@@ -48,7 +48,7 @@ public class SuministraController {
 	}
 	
 	@PutMapping("/suministra/{id}")
-	public Suministra actualizarSuministra(@PathVariable(name="id")int id,@RequestBody Suministra RegistroCurso) {
+	public Suministra actualizarSuministra(@PathVariable(name="id")int id,@RequestBody Suministra suministra) {
 		
 		Suministra suministra_seleccionado= new Suministra();
 		Suministra suministra_actualizado= new Suministra();
@@ -56,8 +56,9 @@ public class SuministraController {
 		suministra_seleccionado= suministraServiceImpl.suministraXID(id);
 		
 		
-		suministra_seleccionado.setPieza(RegistroCurso.getPieza());
-		suministra_seleccionado.setProveedor(RegistroCurso.getProveedor());
+		suministra_seleccionado.setPrecio(suministra.getPrecio());
+		suministra_seleccionado.setPieza(suministra.getPieza());
+		suministra_seleccionado.setProveedor(suministra.getProveedor());
 		
 		suministra_actualizado = suministraServiceImpl.actualizarSuministra(suministra_seleccionado);
 		

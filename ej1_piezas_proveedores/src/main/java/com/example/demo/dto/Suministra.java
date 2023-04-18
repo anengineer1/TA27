@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,22 +17,26 @@ public class Suministra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // busca ultimo valor e incrementa desde id final de db
 	private int id;
+	
+	@Column(name = "precio")
+	private int precio;
 
 	@ManyToOne
 	@JoinColumn(name = "codigopieza")
-	Piezas pieza;
+	private Piezas pieza;
 
 	@ManyToOne
 	@JoinColumn(name = "idproveedor")
-	Proveedores proveedor;
+	private Proveedores proveedor;
 
 	// Constructores
 	public Suministra() {
 
 	}
 
-	public Suministra(int id, Piezas pieza, Proveedores proveedor) {
+	public Suministra(int id, int precio, Piezas pieza, Proveedores proveedor) {
 		this.id = id;
+		this.precio = precio;
 		this.pieza = pieza;
 		this.proveedor = proveedor;
 	}
@@ -79,9 +84,23 @@ public class Suministra {
 		this.proveedor = proveedor;
 	}
 
+	/**
+	 * @return the precio
+	 */
+	public int getPrecio() {
+		return precio;
+	}
+
+	/**
+	 * @param precio the precio to set
+	 */
+	public void setPrecio(int precio) {
+		this.precio = precio;
+	}
+
 	@Override
 	public String toString() {
-		return "Suministra [id=" + id + ", pieza=" + pieza + ", proveedor=" + proveedor + "]";
+		return "Suministra [id=" + id + ", precio=" + precio + ", pieza=" + pieza + ", proveedor=" + proveedor + "]";
 	}
 
 }

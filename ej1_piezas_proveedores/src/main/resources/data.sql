@@ -45,6 +45,7 @@ SET character_set_client = utf8mb4 ;
  
 CREATE TABLE suministra (
   id int NOT NULL AUTO_INCREMENT,
+  precio int NOT NULL,
   codigopieza int NOT NULL,
   idproveedor char(4) NOT NULL,
   PRIMARY KEY (id),
@@ -57,5 +58,5 @@ CREATE TABLE suministra (
 --
 
 LOCK TABLES suministra WRITE;
-INSERT INTO suministra (codigopieza, idproveedor) VALUES (1,'1234'),(2,'1111'),(3,'2222');
+INSERT INTO suministra (precio, codigopieza, idproveedor) VALUES (20,1,'1234'),(30,2,'1111'),(27,3,'2222');
 UNLOCK TABLES;
