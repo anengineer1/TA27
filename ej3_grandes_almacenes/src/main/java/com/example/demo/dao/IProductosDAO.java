@@ -1,0 +1,14 @@
+package com.example.demo.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.dto.Productos;
+
+
+/**
+ * @author Francisco
+ *
+ */
+public interface IProductosDAO extends JpaRepository<Productos, Long>{
+	
+}
