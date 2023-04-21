@@ -2,6 +2,8 @@ package com.investigadores.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -72,6 +74,7 @@ public class Investigadores {
 	/**
 	 * @return the reservas
 	 */
+	@JsonIgnore
 	@OneToMany(mappedBy = "investigador", fetch = FetchType.LAZY)
 	public List<Reserva> getReservas() {
 		return reservas;

@@ -18,7 +18,7 @@ CREATE TABLE investigadores (
   dni varchar(8) NOT NULL,
   nomapels nvarchar(255) DEFAULT NULL,
   idfacultad int,
-  PRIMARY KEY (id),
+  PRIMARY KEY (dni),
   CONSTRAINT facultad_i_fk FOREIGN KEY (idfacultad) REFERENCES facultad (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -43,7 +43,7 @@ CREATE TABLE reserva (
   idequipos char(4),
   PRIMARY KEY (id),
   CONSTRAINT investigadores_fk FOREIGN KEY (idinvestigadores) REFERENCES investigadores (dni) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT equipos_fk FOREIGN KEY (idequipos) REFERENCES equipos (num_serie) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT equipos_fk FOREIGN KEY (idequipos) REFERENCES equipos (num_serie) ON DELETE CASCADE ON UPDATE CASCADE
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -56,16 +56,23 @@ INSERT INTO facultad (nombre) VALUES ('Juan Carlos'), ('Medicina Alquimista'), (
 UNLOCK TABLES;
 
 LOCK TABLES investigadores WRITE;
-INSERT INTO investigadores (nomapels, idfacultad) VALUES ('11111111' ,'Benito Hernandez', 1), ('22222222' ,'Selena Gomez', 2), ('33333333','Romero García', 3);
+INSERT INTO investigadores (dni, nomapels, idfacultad) VALUES ('11111111' ,'Benito Hernandez', 1),
+('22222222' ,'Selena Gomez', 2),
+('33333333','Romero García', 3);
 UNLOCK TABLES;
 
 LOCK TABLES equipos WRITE;
 INSERT INTO equipos (num_serie, nombre, idfacultad) VALUES ('1111', 'Los pepos', 1), ('2222', 'Pe fuertes', 2), ('3333', 'Recelos', 3);
 UNLOCK TABLES;
 
-LOCK TABLES equipos WRITE;
-INSERT INTO equipos (comienzo, fin, dni, numserie) VALUE
+LOCK TABLES reserva WRITE;
+INSERT INTO reserva (comienzo, fin, idinvestigadores, idequipos) VALUE
 ('1998-01-23 12:45:56', '2004-01-22 12:45:56', '11111111', '1111'),
 ('1998-01-23 12:45:56', '2007-02-12 12:45:56', '22222222', '2222'),
 ('1995-01-23 12:45:56', '2000-01-25 12:45:56', '33333333', '3333');
 UNLOCK TABLES;
+
+-- CREATE DATABASE investigadores;
+-- USE investigadores;
+
+-- SELECT * from reserva;
