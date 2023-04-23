@@ -42,8 +42,6 @@ public class ProyectoController {
 		
 		proyecto_xid=proyectoServiceImpl.proyectoXID(id);
 		
-		System.out.println("Curso XID: "+proyecto_xid);
-		
 		return proyecto_xid;
 	}
 	
@@ -59,8 +57,6 @@ public class ProyectoController {
 		proyecto_seleccionado.setHoras(proyecto.getHoras());
 		
 		proyecto_actualizado = proyectoServiceImpl.actualizarProyecto(proyecto_seleccionado);
-		
-		System.out.println("El proyecto actualizado es: "+ proyecto_actualizado);
 		
 		return proyecto_actualizado;
 	}

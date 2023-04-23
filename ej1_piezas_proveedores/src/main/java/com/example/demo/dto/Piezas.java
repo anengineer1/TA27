@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -26,8 +26,7 @@ public class Piezas {
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@OneToMany
-    @JoinColumn(name="codigopieza")
+	@OneToMany(mappedBy = "pieza", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Suministra> suministra;
 	
 	//Constructores
@@ -65,7 +64,7 @@ public class Piezas {
 	 * @return the suministra
 	 */
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Suministra")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pieza")
 	public List<Suministra> getSuministra() {
 		return suministra;
 	}

@@ -38,13 +38,11 @@ public class ProveedoresController {
 	@GetMapping("/proveedores/{id}")
 	public Proveedores proveedorXID(@PathVariable(name="id") String id) {
 		
-		Proveedores pieza_xid= new Proveedores();
+		Proveedores proveedor_xid= new Proveedores();
 		
-		pieza_xid=proveedoresServiceImpl.proveedorXID(id);
+		proveedor_xid=proveedoresServiceImpl.proveedorXID(id);
 		
-		System.out.println("Curso XID: "+pieza_xid);
-		
-		return pieza_xid;
+		return proveedor_xid;
 	}
 	
 	@PutMapping("/proveedores/{id}")
@@ -58,8 +56,6 @@ public class ProveedoresController {
 		proveedor_seleccionado.setNombre(pieza.getNombre());
 		
 		proveedor_actualizado = proveedoresServiceImpl.actualizarProveedor(proveedor_seleccionado);
-		
-		System.out.println("El Curso actualizado es: "+ proveedor_actualizado);
 		
 		return proveedor_actualizado;
 	}

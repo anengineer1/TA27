@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -23,8 +23,7 @@ public class Proveedores {
 	@Column(name = "nombre")
 	private String nombre;
 
-	@OneToMany
-	@JoinColumn(name = "idproveedor")
+	@OneToMany(mappedBy = "proveedor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Suministra> suministra;
 
 	// Constructores
@@ -57,7 +56,7 @@ public class Proveedores {
 	 * @return the suministra
 	 */
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "Suministra")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "proveedor")
 	public List<Suministra> getSuministra() {
 		return suministra;
 	}

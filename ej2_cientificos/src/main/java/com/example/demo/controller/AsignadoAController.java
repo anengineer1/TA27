@@ -42,8 +42,6 @@ public class AsignadoAController {
 		
 		asignado_a_xid=asignadoAServiceImpl.asignadoAXID(id);
 		
-		System.out.println("RegistroCurso XID: "+asignado_a_xid);
-		
 		return asignado_a_xid;
 	}
 	
@@ -60,8 +58,6 @@ public class AsignadoAController {
 		asignado_a_seleccionado.setProyecto(asignado_a.getProyecto());
 		
 		asignado_a_actualizado = asignadoAServiceImpl.actualizarAsignadoA(asignado_a_seleccionado);
-		
-		System.out.println("El suministro actualizado es: "+ asignado_a_actualizado);
 		
 		return asignado_a_actualizado;
 	}

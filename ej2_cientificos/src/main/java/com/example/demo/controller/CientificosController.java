@@ -42,8 +42,6 @@ public class CientificosController {
 		
 		cientifico_xid=cientificosServiceImpl.cientificoXID(id);
 		
-		System.out.println("Cientifico XID: "+cientifico_xid);
-		
 		return cientifico_xid;
 	}
 	
@@ -58,8 +56,6 @@ public class CientificosController {
 		cientifico_seleccionado.setNomapels(cientificos.getNomapels());
 		
 		cientifico_actualizado = cientificosServiceImpl.actualizarCientifico(cientifico_seleccionado);
-		
-		System.out.println("El Curso actualizado es: "+ cientifico_actualizado);
 		
 		return cientifico_actualizado;
 	}

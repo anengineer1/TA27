@@ -38,13 +38,11 @@ public class SuministraController {
 	@GetMapping("/suministra/{id}")
 	public Suministra suministraXID(@PathVariable(name="id") int id) {
 		
-		Suministra RegistroCurso_xid= new Suministra();
+		Suministra suministra_xid= new Suministra();
 		
-		RegistroCurso_xid=suministraServiceImpl.suministraXID(id);
+		suministra_xid=suministraServiceImpl.suministraXID(id);
 		
-		System.out.println("RegistroCurso XID: "+RegistroCurso_xid);
-		
-		return RegistroCurso_xid;
+		return suministra_xid;
 	}
 	
 	@PutMapping("/suministra/{id}")
@@ -68,7 +66,7 @@ public class SuministraController {
 	}
 	
 	@DeleteMapping("/suministra/{id}")
-	public void eleiminarSuministra(@PathVariable(name="id")int id) {
+	public void eliminarSuministra(@PathVariable(name="id")int id) {
 		suministraServiceImpl.eliminarSuministra(id);
 	}
 

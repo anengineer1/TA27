@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -25,8 +26,7 @@ public class Proyecto {
 	@Column(name = "horas")
 	private int horas;
 
-	@OneToMany
-	@JoinColumn(name = "idproyecto")
+	@OneToMany(mappedBy = "proyecto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<AsignadoA> asignado_a;
 
 	// Constructores
@@ -60,7 +60,7 @@ public class Proyecto {
 	 * @return the suministra
 	 */
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "AsignaA")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "proyecto")
 	public List<AsignadoA> getAsignaA() {
 		return asignado_a;
 	}
