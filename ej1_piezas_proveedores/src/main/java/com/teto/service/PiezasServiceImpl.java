@@ -1,12 +1,14 @@
-package com.example.demo.service;
+package com.teto.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.IPiezasDAO;
-import com.example.demo.dto.Piezas;
+import com.teto.dao.IPiezasDAO;
+import com.teto.dto.Piezas;
+
+
 
 @Service
 public class PiezasServiceImpl implements IPiezasService {

@@ -1,8 +1,9 @@
-package com.example.demo.service;
+package com.teto.service;
 
 import java.util.List;
 
-import com.example.demo.dto.Piezas;
+import com.teto.dto.Piezas;
+
 
 public interface IPiezasService {
 

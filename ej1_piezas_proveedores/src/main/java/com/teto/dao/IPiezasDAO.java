@@ -1,8 +1,10 @@
-package com.example.demo.dao;
+package com.teto.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.dto.Piezas;
+import com.teto.dto.Piezas;
+
+
 
 
 /**

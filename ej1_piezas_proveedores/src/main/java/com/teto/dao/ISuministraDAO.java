@@ -1,8 +1,8 @@
-package com.example.demo.dao;
+package com.teto.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.dto.Suministra;
+import com.teto.dto.Suministra;
 
 
 /**

@@ -1,8 +1,9 @@
-package com.example.demo.service;
+package com.teto.service;
 
 import java.util.List;
 
-import com.example.demo.dto.Proveedores;
+import com.teto.dto.Proveedores;
+
 
 public interface IProveedoresService {
 

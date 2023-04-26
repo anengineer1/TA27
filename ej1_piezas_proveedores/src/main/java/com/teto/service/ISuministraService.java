@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package com.teto.service;
 
 import java.util.List;
 
-import com.example.demo.dto.Suministra;
+import com.teto.dto.Suministra;
 
 public interface ISuministraService {
 

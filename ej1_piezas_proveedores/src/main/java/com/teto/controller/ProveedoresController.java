@@ -1,7 +1,6 @@
-package com.example.demo.controller;
+package com.teto.controller;
 
-import com.example.demo.service.ProveedoresServiceImpl;
-import com.example.demo.dto.Proveedores;
+
 
 import java.util.List;
 
@@ -14,6 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.teto.dto.Proveedores;
+import com.teto.service.ProveedoresServiceImpl;
 
 @RestController
 @RequestMapping("/api")
