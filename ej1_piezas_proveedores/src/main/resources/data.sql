@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS Usuario;
+DROP TABLE IF EXISTS usuarios;
 DROP TABLE IF EXISTS suministra;
 DROP TABLE IF EXISTS piezas;
 DROP TABLE IF EXISTS proveedores;
 SET character_set_client = utf8mb4;
 
-CREATE TABLE Usuario (
+CREATE TABLE usuarios (
 id int NOT NULL AUTO_INCREMENT,
 username NVARCHAR(255),
 password NVARCHAR(255),
@@ -12,7 +12,7 @@ role NVARCHAR(255),
 PRIMARY KEY (id)
 );
 
-INSERT INTO Usuario (username, password, role) VALUES ('admin', '$2a$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.','admin');
+INSERT INTO usuarios (username, password, role) VALUES ('admin', '$2a$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.','admin');
 
 CREATE TABLE piezas (
   codigo int NOT NULL AUTO_INCREMENT,

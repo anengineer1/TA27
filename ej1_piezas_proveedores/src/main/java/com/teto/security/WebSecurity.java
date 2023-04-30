@@ -1,35 +1,41 @@
 package com.teto.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.teto.service.UsuarioDetailsServiceImpl;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurity {
 
-	private UserDetailsService userDetailsService;
+	
+	private UsuarioDetailsServiceImpl usuarioDetails;
+	
+	private JwtAuthEntryPoint jwtAuthEntryPoint;
 
-	public WebSecurity(UserDetailsService userDetailsService) {
-		this.userDetailsService = userDetailsService;
+	@Autowired
+	public WebSecurity(UsuarioDetailsServiceImpl usuarioDetailsServiceImpl, JwtAuthEntryPoint jwtAuthEntryPoint) {
+		this.usuarioDetails = usuarioDetailsServiceImpl;
+		this.jwtAuthEntryPoint = jwtAuthEntryPoint;
 	}
 
-	@Bean
-	BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
-	protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		/*
 		 * 1. Se desactiva el uso de cookies 2. Se activa la configuración CORS con los
 		 * valores por defecto 3. Se desactiva el filtro CSRF 4. Se indica que el login
@@ -41,17 +47,33 @@ public class WebSecurity {
          .cors()
          .and()
          .csrf().disable()
+         .exceptionHandling()
+         .authenticationEntryPoint(jwtAuthEntryPoint)
+         .and()
          .authorizeHttpRequests()
              .requestMatchers(HttpMethod.POST, "/register").permitAll()
              .requestMatchers(HttpMethod.POST, "/login").permitAll()
-             .anyRequest().authenticated();
+             .anyRequest().authenticated()
+             .and()
+             .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+		 
+		 return http.build();
 	}
 
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// Se define la clase que recupera los usuarios y el algoritmo para procesar las
-		// passwords
-		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration auth_config) throws Exception {
+    	return auth_config.getAuthenticationManager();
+    }
+    
+	@Bean
+	PasswordEncoder PasswordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
+    
+    @Bean
+    JWTAuthenticationFilter jwtAuthenticationFilter() {
+    	return new JWTAuthenticationFilter();
+    }
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {

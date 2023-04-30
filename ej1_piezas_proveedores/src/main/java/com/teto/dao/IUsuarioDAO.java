@@ -1,10 +1,10 @@
 package com.teto.dao;
 
-import com.teto.dto.Usuario;
+import com.teto.dto.Usuarios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface IUsuarioDAO extends JpaRepository<Usuario, Long> {
+public interface IUsuarioDAO extends JpaRepository<Usuarios, Long> {
 
-	Usuario findByUsername(String username);
+	Usuarios findByUsername(String username);
 }

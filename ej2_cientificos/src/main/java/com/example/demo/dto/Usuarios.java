@@ -1,13 +1,17 @@
-package com.teto.dto;
+package com.example.demo.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
 
 @Entity
-public class Usuario {
+@Table(name = "usuarios")
+@Data
+public class Usuarios {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +26,7 @@ public class Usuario {
 	@Column(name = "role")
 	private String role;
 	
-	public Usuario() {
+	public Usuarios() {
 	}
 
 	/**
@@ -31,7 +35,7 @@ public class Usuario {
 	 * @param password
 	 * @param role
 	 */
-	public Usuario(long id, String username, String password, String role) {
+	public Usuarios(long id, String username, String password, String role) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
